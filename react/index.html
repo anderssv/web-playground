@@ -1,0 +1,25 @@
+<!-- From https://dev.to/jeetvora331/write-react-code-with-cdn-in-html-56i9 -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+</head>
+
+<body>
+<header><h1>Header</h1></header>
+<main>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;" id="react-content">
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/babel-standalone@6/babel.js"></script>
+
+        <script src="script.js" type="text/babel"></script>
+    </div>
+</main>
+<footer><p>Footer</p></footer>
+
+</body>
+</html>
