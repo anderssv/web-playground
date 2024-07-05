@@ -17,6 +17,7 @@
                 end = new Date().getTime();
             }
         }
+
         export class MyElement extends LitElement {
             static properties = {
                 version: {},
@@ -28,7 +29,7 @@
             }
 
             render() {
-                wait(5000)
+                wait(3000)
                 return html`
                     <p>Welcome to the Lit tutorial!</p>
                     <p>This is the ${this.version} code.</p>
