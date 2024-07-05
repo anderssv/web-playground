@@ -1,14 +1,22 @@
 <!-- From https://lit.dev/playground/ -->
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="A playground for lit-element">
     <title>Document</title>
     <script crossorigin type="module">
         import {html, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
 
+        function wait(ms){
+            var start = new Date().getTime();
+            var end = start;
+            while(end < start + ms) {
+                end = new Date().getTime();
+            }
+        }
         export class MyElement extends LitElement {
             static properties = {
                 version: {},
@@ -20,6 +28,7 @@
             }
 
             render() {
+                wait(5000)
                 return html`
                     <p>Welcome to the Lit tutorial!</p>
                     <p>This is the ${this.version} code.</p>
@@ -34,6 +43,11 @@
 <body>
 <header><h1>Header</h1></header>
 <main>
+    <h1>HTML Element</h1>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+        Hello
+    </div>
+    <h1>Lit Element</h1>
     <div style="border: 1px solid red; padding: 10px; margin: 10px;">
         <my-element></my-element>
     </div>
