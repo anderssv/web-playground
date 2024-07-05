@@ -7,38 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="A playground for lit-element">
     <title>Document</title>
-    <script crossorigin type="module">
-        import {html, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
-
-        function wait(ms){
-            var start = new Date().getTime();
-            var end = start;
-            while(end < start + ms) {
-                end = new Date().getTime();
-            }
-        }
-
-        export class MyElement extends LitElement {
-            static properties = {
-                version: {},
-            };
-
-            constructor() {
-                super();
-                this.version = 'STARTING';
-            }
-
-            render() {
-                wait(3000)
-                return html`
-                    <p>Welcome to the Lit tutorial!</p>
-                    <p>This is the ${this.version} code.</p>
-                `;
-            }
-        }
-
-        customElements.define('my-element', MyElement);
-    </script>
+    <script src="script.js" type="module"></script>
 </head>
 
 <body>
