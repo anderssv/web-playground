@@ -1,0 +1,44 @@
+<!-- From https://lit.dev/playground/ -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script crossorigin type="module">
+        import {html, LitElement} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
+
+        export class MyElement extends LitElement {
+            static properties = {
+                version: {},
+            };
+
+            constructor() {
+                super();
+                this.version = 'STARTING';
+            }
+
+            render() {
+                return html`
+                    <p>Welcome to the Lit tutorial!</p>
+                    <p>This is the ${this.version} code.</p>
+                `;
+            }
+        }
+
+        customElements.define('my-element', MyElement);
+    </script>
+</head>
+
+<body>
+<header><h1>Header</h1></header>
+<main>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+        <my-element></my-element>
+    </div>
+</main>
+<footer><p>Footer</p></footer>
+
+</body>
+</html>
