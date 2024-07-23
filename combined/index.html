@@ -14,8 +14,14 @@
 <main>
     <h1>HTML Element</h1>
     <div style="border: 1px solid red; padding: 10px; margin: 10px;">
-        <h1>Hello readers, Thank you for reading this blog !</h1>
-        <p id="html-date"></p>
+        <h1>Todo List</h1>
+        <ul id="todo-list">
+            <li>Buy milk</li>
+            <li>Buy bread</li>
+            <li>Buy eggs</li>
+            <li>Buy butter</li>
+        </ul>
+        <p>It is now <span id="html-date"></span></p>
         <script>
             document.getElementById('html-date').innerHTML = new Date().toLocaleString();
         </script>

@@ -6,7 +6,13 @@ import ReactDOM from 'https://esm.sh/react-dom@18/client?dev';
 function Greetings() {
     wait(viewDelay);
     return <div>
-        <h1>Hello readers, Thank you for reading this blog !</h1>
+        <h1>Todo List</h1>
+        <ul>
+            <li>Buy milk</li>
+            <li>Buy bread</li>
+            <li>Buy eggs</li>
+            <li>Buy butter</li>
+        </ul>
         <p>{new Date().toLocaleString()}</p>
     </div>;
 }
