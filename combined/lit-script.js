@@ -15,6 +15,7 @@ export class MyElement extends LitElement {
 
     _productList = new Task(this, {
         task: async () => {
+            wait(viewDelay)
             return await getTodoList();
         },
         args: () => [this.time]
@@ -22,18 +23,19 @@ export class MyElement extends LitElement {
 
     render() {
         wait(viewDelay)
-        return this._productList.render({
-            pending: () => html`<p>Loading...</p>`,
-            complete: (todoList) => html`
-                <h1>Todo List</h1>
-                <ul>
-                    ${todoList.map(item => html`
-                        <li>${item.title}</li>`)}
-                </ul>
-                <p>It is now ${this.time}</p>
-            `,
-            error: (error) => html`<p>Error: ${error}</p>`
-        });
+        return html`
+            <h1>Todo List</h1>
+            <ul>
+                ${this._productList.render({
+                    pending: () => html`<p>Loading...</p>`,
+                    complete: (todoList) => todoList.map(item => html`
+                        <li>${item.title}</li>`)
+                    ,
+                    error: (error) => html`<p>Error: ${error}</p>`
+                })}
+            </ul>
+            <p>It is now ${this.time}</p>
+        `
     }
 }
 
