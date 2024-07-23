@@ -1,0 +1,37 @@
+<!-- From https://lit.dev/playground/ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="A playground for web things">
+    <title>Document</title>
+</head>
+
+<body>
+<header><h1>Header</h1></header>
+<main>
+    <h1>HTML Element</h1>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+        <h1>Hello readers, Thank you for reading this blog !</h1>
+        <p id="html-date"></p>
+        <script>
+            document.getElementById('html-date').innerHTML = new Date().toLocaleString();
+        </script>
+    </div>
+    <h1>Lit Element</h1>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+        <script src="lit-script.js" type="module"></script>
+        <my-element></my-element>
+    </div>
+    <h1>React Element</h1>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;" id="react-content">
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script src="react-script.js" type="text/babel" data-type="module"></script>
+    </div>
+</main>
+<footer><p>Footer</p></footer>
+
+</body>
+</html>
