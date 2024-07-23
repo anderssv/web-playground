@@ -1,17 +1,29 @@
-import {viewDelay, wait} from './common-script.js';
+import {viewDelay, wait, getTodoList} from './common-script.js';
 import React from 'https://esm.sh/react@18/?dev';
 import ReactDOM from 'https://esm.sh/react-dom@18/client?dev';
 
 // Define a component called Greetings
 function Greetings() {
     wait(viewDelay);
+
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [todoList, setTodoList] = React.useState([]);
+
+    React.useEffect(() => {
+        async function fetchTodoList() {
+            const list = await getTodoList();
+            setTodoList(list);
+            setIsLoading(false);
+        }
+        fetchTodoList();
+    }, []);
+
     return <div>
         <h1>Todo List</h1>
         <ul>
-            <li>Buy milk</li>
-            <li>Buy bread</li>
-            <li>Buy eggs</li>
-            <li>Buy butter</li>
+            {isLoading ? <p>Loading...</p> : todoList.map((item, index) => {
+                return <li key={index}>{item.title}</li>
+            })}
         </ul>
         <p>{new Date().toLocaleString()}</p>
     </div>;

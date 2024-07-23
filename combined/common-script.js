@@ -1,4 +1,4 @@
-export const viewDelay = 1000;
+export const viewDelay = 500;
 
 export function wait(ms) {
     const start = new Date().getTime();
