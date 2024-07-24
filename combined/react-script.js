@@ -25,7 +25,7 @@ function Greetings() {
                 return <li key={index}>{item.title}</li>
             })}
         </ul>
-        <p>{new Date().toLocaleString()}</p>
+        <p>It is now {new Date().toLocaleString()}</p>
     </div>;
 }
 
