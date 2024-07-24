@@ -4,7 +4,6 @@ import {getTodoList, viewDelay, wait} from './common-script.js';
 
 export class MyElement extends LitElement {
     static properties = {
-        version: {},
         time: {},
     };
 
@@ -18,7 +17,7 @@ export class MyElement extends LitElement {
             wait(viewDelay)
             return await getTodoList();
         },
-        args: () => [this.time]
+        args: () => []
     })
 
     render() {
@@ -34,8 +33,7 @@ export class MyElement extends LitElement {
                     error: (error) => html`<p>Error: ${error}</p>`
                 })}
             </ul>
-            <p>It is now ${this.time}</p>
-        `
+            <p>It is now ${this.time}</p>`
     }
 }
 
