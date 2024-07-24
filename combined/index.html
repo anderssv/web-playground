@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="A playground for web things">
     <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,6 +31,38 @@
             document.getElementById('html-date').innerHTML = new Date().toLocaleString();
         </script>
     </div>
+    <h1>Custom Element</h1>
+    <script>
+        class MyWrapper extends HTMLElement {
+            constructor() {
+                super();
+
+                // Create a shadow root to encapsulate styles and content
+                const shadow = this.attachShadow({mode: 'open'});
+
+                // Create a div element to wrap the content
+                const wrapperDiv = document.createElement('div');
+                wrapperDiv.style.border = '1px solid red';
+                wrapperDiv.style.padding = '10px';
+                wrapperDiv.style.margin = '10px';
+
+                wrapperDiv.innerHTML = `Hello from WebComonent!!`;
+
+                shadow.appendChild(wrapperDiv);
+            }
+
+            connectedCallback() {
+                console.log('NO:' + this.innerHTML)
+            }
+
+        }
+
+        // Register the custom element
+        customElements.define('my-wrapper', MyWrapper);
+    </script>
+    <my-wrapper>
+        Hello from element!!
+    </my-wrapper>
     <h1>Lit Element</h1>
     <div style="border: 1px solid red; padding: 10px; margin: 10px;">
         <script src="lit-script.js" type="module"></script>
@@ -36,6 +73,12 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script src="react-script.js" type="text/babel" data-type="module"></script>
     </div>
+    <h1>HTMX Element</h1>
+    <div style="border: 1px solid red; padding: 10px; margin: 10px;" hx-get="todolist.html">
+        <script src="https://unpkg.com/htmx.org@latest"></script>
+        Click me!
+    </div>
+
 </main>
 <footer><p>Footer</p></footer>
 
