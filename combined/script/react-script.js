@@ -1,4 +1,4 @@
-import {viewDelay, wait, getTodoList} from './common-script.js';
+import {viewDelay, wait, getTodoList} from '/script/common-script.js';
 import React from 'https://esm.sh/react@18/?dev';
 import ReactDOM from 'https://esm.sh/react-dom@18/client?dev';
 
