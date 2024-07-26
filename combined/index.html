@@ -1,91 +1,87 @@
-<!-- From https://lit.dev/playground/ -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+  <head>
+    <title>HTMX and KTor &lt;3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Hello">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" sizes="any">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/preload.js"></script>
+    <style>#choices {
+    display: grid; /* Enables grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); /* Adjust the number of columns based on the width of the container */
+    /* Key line for responsiveness: */
+    gap: 20px; /* Adjust the spacing between items */
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="A playground for web things">
-    <title>Document</title>
-    <style>
-        body {
-            font-family: sans-serif;
-        }
-    </style>
-</head>
+    a {
+        display: block;
+    }
+}
 
-<body>
-<header>
-    <h1>Header</h1>
-    <p>This is a small test. You can see the source at <a href="https://github.com/anderssv/web-playground/tree/main/combined">https://github.com/anderssv/web-playground/tree/main/combined</a> or just hit view source. 😃</p>
-    <p>Loading below is staggered on purpose to show steps. Just a crude wait.</p>
-</header>
-<main>
-    <h1>HTML Element</h1>
-    <div style="border: 1px solid red; padding: 10px; margin: 10px;">
-        <h1>Todo List</h1>
-        <ul id="todo-list">
-            <li>Buy milk</li>
-            <li>Buy bread</li>
-            <li>Buy eggs</li>
-            <li>Buy butter</li>
-        </ul>
-        <p>It is now <span id="html-date"></span></p>
-        <script>
-            document.getElementById('html-date').innerHTML = new Date().toLocaleString();
-        </script>
+.box {
+    border: 1px solid red;
+    border-radius: 0.5em;
+    text-align: center;
+    padding: 1em;                    
+}
+                    
+section {
+    margin-bottom: 2em;
+}</style>
+  </head>
+  <body hx-ext="json-enc">
+    <div style="max-width: 90vw; margin: auto;">
+      <header>
+        <h1>Kotlin + KTor front end demos</h1>
+        <div>
+          <p>This is a small test. You can see the source at: 
+            <ul>
+              <li><a href="https://github.com/anderssv/web-playground/tree/main/combined">Pure HTML source (same as view source)</a></li>
+              <li><a href="https://github.com/anderssv/kotlin-htmx/blob/main/src/main/kotlin/no/mikill/kotlin_htmx/pages/DemoPage.kt">Kotlin + KTor source</a></li>
+            </ul>
+Or just hit view source. 😃</p>
+          <p>Loading below is staggered on purpose to show steps. Just a crude wait.</p>
+        </div>
+      </header>
+      <main id="mainContent">
+        <section>
+          <h1>HTML Element</h1>
+          <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+            <h1>Todo List</h1>
+            <ul id="todo-list">
+              <li>Buy milk</li>
+              <li>Buy bread</li>
+              <li>Buy eggs</li>
+              <li>Buy butter</li>
+            </ul>
+            <p><span id="html-date"></span></p>
+          </div>
+          <script>document.getElementById('html-date').innerHTML = new Date().toLocaleString();</script>
+        </section>
+        <section>
+          <h1>Lit Element</h1>
+          <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+            <script src="/script/lit-script.js" type="module"></script>
+<my-element></my-element>          </div>
+        </section>
+        <section>
+          <h1>HTMX Element</h1>
+          <div hx-get="data/todolist.html" style="border: 1px solid red; padding: 10px; margin: 10px;">
+            <script src="https://unpkg.com/htmx.org@latest"></script>
+Click me!</div>
+        </section>
+        <section>
+          <h1>React Element</h1>
+          <div id="react-content" style="border: 1px solid red; padding: 10px; margin: 10px;">
+            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+            <script src="script/react-script.js" type="text/babel" data-type="module"></script>
+React not loaded</div>
+        </section>
+      </main>
+      <footer>This is the footer. - Made by Anders Sveen. Check out<a href="https://www.mikill.no">https://www.mikill.no</a></footer>
     </div>
-    <h1>Lit Element</h1>
-    <div style="border: 1px solid red; padding: 10px; margin: 10px;">
-        <script src="script/lit-script.js" type="module"></script>
-        <my-element></my-element>
-    </div>
-    <h1>React Element</h1>
-    <div style="border: 1px solid red; padding: 10px; margin: 10px;" id="react-content">
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-        <script src="script/react-script.js" type="text/babel" data-type="module"></script>
-    </div>
-    <h1>HTMX Element</h1>
-    <div style="border: 1px solid red; padding: 10px; margin: 10px;" hx-get="data/todolist.html">
-        <script src="https://unpkg.com/htmx.org@latest"></script>
-        Click me!
-    </div>
-    <h1>Custom Element</h1>
-    <p>Not really working properly yet.</p>
-    <script>
-        class MyWrapper extends HTMLElement {
-            constructor() {
-                super();
-
-                // Create a shadow root to encapsulate styles and content
-                const shadow = this.attachShadow({mode: 'open'});
-
-                // Create a div element to wrap the content
-                const wrapperDiv = document.createElement('div');
-                wrapperDiv.style.border = '1px solid red';
-                wrapperDiv.style.padding = '10px';
-                wrapperDiv.style.margin = '10px';
-
-                wrapperDiv.innerHTML = `Hello from WebComonent!!`;
-
-                shadow.appendChild(wrapperDiv);
-            }
-
-            connectedCallback() {
-                console.log('NO:' + this.innerHTML)
-            }
-
-        }
-
-        // Register the custom element
-        customElements.define('my-wrapper', MyWrapper);
-    </script>
-    <my-wrapper>
-        Hello from element!!
-    </my-wrapper>
-
-</main>
-<footer><p>Footer</p></footer>
-
-</body>
+  </body>
 </html>
