@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-  <head>
+<head>
     <title>HTMX and KTor &lt;3</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,92 +11,102 @@
     <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/preload.js"></script>
     <style>#choices {
-    display: grid; /* Enables grid layout */
-    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); /* Adjust the number of columns based on the width of the container */
-    /* Key line for responsiveness: */
-    gap: 20px; /* Adjust the spacing between items */
+        display: grid; /* Enables grid layout */
+        grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); /* Adjust the number of columns based on the width of the container */
+        /* Key line for responsiveness: */
+        gap: 20px; /* Adjust the spacing between items */
 
-    a {
-        display: block;
+        a {
+            display: block;
+        }
     }
-}
 
-.htmx-indicator{
-    opacity:0;
-    transition: opacity 500ms ease-in;
-}
-.htmx-request .htmx-indicator{
-    opacity:1
-}
-.htmx-request.htmx-indicator{
-    opacity:1
-}                                        
+    .htmx-indicator {
+        opacity: 0;
+        transition: opacity 500ms ease-in;
+    }
 
-.box {
-    border: 1px solid red;
-    border-radius: 0.5em;
-    text-align: center;
-    padding: 1em;                    
-}
-                    
-section {
-    margin-bottom: 2em;
-}
-                    
-.form-error {
-    color: red;
-}</style>
-  </head>
-  <body hx-ext="json-enc">
-    <div style="max-width: 90vw; margin: auto;">
-      <header>
+    .htmx-request .htmx-indicator {
+        opacity: 1
+    }
+
+    .htmx-request.htmx-indicator {
+        opacity: 1
+    }
+
+    .box {
+        border: 1px solid red;
+        border-radius: 0.5em;
+        text-align: center;
+        padding: 1em;
+    }
+
+    section {
+        margin-bottom: 2em;
+    }
+
+    .form-error {
+        color: red;
+    }</style>
+</head>
+<body hx-ext="json-enc">
+<div style="max-width: 90vw; margin: auto;">
+    <header>
         <h1>Kotlin + KTor front end demos</h1>
         <div>
-          <p>This is a small test. You can see the source at: 
+            <p>This is a small test. You can see the source at:
             <ul>
-              <li><a href="https://github.com/anderssv/web-playground/tree/main/combined">Pure HTML source (same as view source)</a></li>
-              <li><a href="https://github.com/anderssv/kotlin-htmx/blob/main/src/main/kotlin/no/mikill/kotlin_htmx/pages/DemoPage.kt">Kotlin + KTor source</a></li>
+                <li><a href="https://github.com/anderssv/web-playground/tree/main/combined">Pure HTML source (same as
+                    view source)</a></li>
+                <li>
+                    <a href="https://github.com/anderssv/kotlin-htmx/blob/main/src/main/kotlin/no/mikill/kotlin_htmx/pages/DemoPage.kt">Kotlin
+                        + KTor source</a></li>
             </ul>
-Or just hit view source. 😃</p>
-          <p>Loading below is staggered on purpose to show steps. Just a crude wait.</p>
+            Or just hit view source. 😃</p>
+            <p>Loading below is staggered on purpose to show steps. Just a crude wait.</p>
         </div>
-      </header>
-      <main id="mainContent">
+    </header>
+    <main id="mainContent">
         <section>
-          <h1>HTML Element</h1>
-          <div style="border: 1px solid red; padding: 10px; margin: 10px;">
-            <h1>Todo List</h1>
-            <ul id="todo-list">
-              <li>Buy milk</li>
-              <li>Buy bread</li>
-              <li>Buy eggs</li>
-              <li>Buy butter</li>
-            </ul>
-            <p><span id="html-date"></span></p>
-            <script>document.getElementById('html-date').innerHTML = new Date().toLocaleString();</script>
-          </div>
+            <h1>HTML Element</h1>
+            <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+                <h1>Todo List</h1>
+                <ul id="todo-list">
+                    <li>Buy milk</li>
+                    <li>Buy bread</li>
+                    <li>Buy eggs</li>
+                    <li>Buy butter</li>
+                </ul>
+                <p><span id="html-date"></span></p>
+                <script>document.getElementById('html-date').innerHTML = new Date().toLocaleString();</script>
+            </div>
         </section>
         <section>
-          <h1>HTMX Element</h1>
-          <div hx-get="/data/todolist.html" hx-swap="innerHTML" hx-trigger="load delay:1s, click" style="border: 1px solid red; padding: 10px; margin: 10px;">Click me!
-            <div class="htmx-indicator">Loading... (Intentionally delayed for 1 seconds)</div>
-          </div>
+            <h1>HTMX Element</h1>
+            <div hx-get="/data/todolist.html" hx-swap="innerHTML" hx-trigger="load delay:1s, click"
+                 style="border: 1px solid red; padding: 10px; margin: 10px;">
+                Click me!
+                <div class="htmx-indicator">Loading... (Intentionally delayed for 1 seconds)</div>
+            </div>
         </section>
         <section>
-          <h1>Lit Element</h1>
-          <div style="border: 1px solid red; padding: 10px; margin: 10px;">
-            <script src="/script/lit-script.js" type="module"></script>
-<my-element></my-element>          </div>
+            <h1>Lit Element</h1>
+            <div style="border: 1px solid red; padding: 10px; margin: 10px;">
+                <script src="/script/lit-script.js" type="module"></script>
+                <my-element></my-element>
+            </div>
         </section>
         <section>
-          <h1>React Element</h1>
-          <div id="react-content" style="border: 1px solid red; padding: 10px; margin: 10px;">
-            <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-            <script src="/script/react-script.js" type="text/babel" data-type="module"></script>
-React not loaded</div>
+            <h1>React Element</h1>
+            <div id="react-content" style="border: 1px solid red; padding: 10px; margin: 10px;">
+                <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+                <script src="/script/react-script.js" type="text/babel" data-type="module"></script>
+                React not loaded
+            </div>
         </section>
-      </main>
-      <footer>This is the footer. - Made by Anders Sveen. Check out <a href="https://www.mikill.no">https://www.mikill.no</a></footer>
-    </div>
-  </body>
+    </main>
+    <footer>This is the footer. - Made by Anders Sveen. Check out <a
+            href="https://www.mikill.no">https://www.mikill.no</a></footer>
+</div>
+</body>
 </html>
