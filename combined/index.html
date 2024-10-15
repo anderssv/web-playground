@@ -1,26 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-    <title>HTMX and KTor &lt;3</title>
+    <title>HTMX</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Hello">
     <link rel="icon" href="/static/favicon.ico" type="image/x-icon" sizes="any">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/preload.js"></script>
-    <style>#choices {
-        display: grid; /* Enables grid layout */
-        grid-template-columns: repeat(auto-fit, minmax(15em, 1fr)); /* Adjust the number of columns based on the width of the container */
-        /* Key line for responsiveness: */
-        gap: 20px; /* Adjust the spacing between items */
-
-        a {
-            display: block;
-        }
-    }
-
+    <style>
     .htmx-indicator {
         opacity: 0;
         transition: opacity 500ms ease-in;
@@ -34,37 +22,16 @@
         opacity: 1
     }
 
-    .box {
-        border: 1px solid red;
-        border-radius: 0.5em;
-        text-align: center;
-        padding: 1em;
-    }
-
     section {
         margin-bottom: 2em;
     }
 
-    .form-error {
-        color: red;
-    }</style>
+    </style>
 </head>
-<body hx-ext="json-enc">
+<body>
 <div style="max-width: 90vw; margin: auto;">
     <header>
-        <h1>Kotlin + KTor front end demos</h1>
-        <div>
-            <p>This is a small test. You can see the source at:
-            <ul>
-                <li><a href="https://github.com/anderssv/web-playground/tree/main/combined">Pure HTML source (same as
-                    view source)</a></li>
-                <li>
-                    <a href="https://github.com/anderssv/kotlin-htmx/blob/main/src/main/kotlin/no/mikill/kotlin_htmx/pages/DemoPage.kt">Kotlin
-                        + KTor source</a></li>
-            </ul>
-            Or just hit view source. 😃</p>
-            <p>Loading below is staggered on purpose to show steps. Just a crude wait.</p>
-        </div>
+        <h1>Header</h1>
     </header>
     <main id="mainContent">
         <section>
@@ -80,7 +47,7 @@
                 <p><span id="html-date"></span></p>
                 <script>document.getElementById('html-date').innerHTML = new Date().toLocaleString();</script>
             </div>
-        </section>
+        </section> <!-- Plain HTML -->
         <section>
             <h1>HTMX Element</h1>
             <div
@@ -89,16 +56,18 @@
                     hx-swap="innerHTML"
                     style="border: 1px solid red; padding: 10px; margin: 10px;">
                 Click me!
-                <div class="htmx-indicator">Loading... (Intentionally delayed for 1 seconds)</div>
+                <div class="htmx-indicator">
+                    Loading... (Intentionally delayed for 1 seconds)
+                </div>
             </div>
-        </section>
+        </section> <!-- HTMX -->
         <section>
             <h1>Lit Element</h1>
             <div style="border: 1px solid red; padding: 10px; margin: 10px;">
                 <script src="/script/lit-script.js" type="module"></script>
                 <my-element></my-element>
             </div>
-        </section>
+        </section> <!-- Lit -->
         <section>
             <h1>React Element</h1>
             <div id="react-content" style="border: 1px solid red; padding: 10px; margin: 10px;">
@@ -106,7 +75,7 @@
                 <script src="/script/react-script.js" type="text/babel" data-type="module"></script>
                 React not loaded
             </div>
-        </section>
+        </section> <!-- React -->
     </main>
     <footer>This is the footer. - Made by Anders Sveen. Check out <a
             href="https://www.mikill.no">https://www.mikill.no</a></footer>
